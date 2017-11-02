@@ -160,6 +160,14 @@ func (ctxt *Context) FrameNumber() int {
 	return int(ctxt.frame_number)
 }
 
+func (ctxt *Context) Framerate() avutil.Rational {
+	return *(*avutil.Rational)(unsafe.Pointer(&ctxt.framerate))
+}
+
+func (ctxt *Context) SetFramerate(framerate avutil.Rational) {
+	ctxt.framerate = *((*C.struct_AVRational)(unsafe.Pointer(&framerate)))
+}
+
 func (ctxt *Context) FrameSize() int {
 	return int(ctxt.frame_size)
 }
@@ -262,6 +270,10 @@ func (ctxt *Context) LumiMasking() float64 {
 
 func (ctxt *Context) MaxBFrames() int {
 	return int(ctxt.max_b_frames)
+}
+
+func (ctxt *Context) SetMaxBFrames(maxBFrames int) {
+	ctxt.max_b_frames = C.int(maxBFrames)
 }
 
 func (ctxt *Context) MaxPredictionOrder() int {
