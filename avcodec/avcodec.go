@@ -253,6 +253,10 @@ func AvcodecDescriptorGetByName(n string) *Descriptor {
 	return (*Descriptor)(C.avcodec_descriptor_get_by_name(C.CString(n)))
 }
 
+func AvcodecReceivePacket(avctx *Context, avpkt *Packet) int {
+	return int(C.avcodec_receive_packet((*C.struct_AVCodecContext)(avctx), (*C.struct_AVPacket)(avpkt)))
+}
+
 // AvcodecSendPacket send packet data as input to a decoder.
 // See the ffmpeg documentation: https://www.ffmpeg.org/doxygen/trunk/group__lavc__encdec.html
 func AvcodecSendPacket(avctx *Context, avpkt *Packet) int {
@@ -263,4 +267,8 @@ func AvcodecSendPacket(avctx *Context, avpkt *Packet) int {
 // See the ffmpeg documentation: https://www.ffmpeg.org/doxygen/trunk/group__lavc__encdec.html
 func AvcodecReceiveFrame(avctx *Context, frame *avutil.Frame) int {
 	return int(C.avcodec_receive_frame((*C.struct_AVCodecContext)(avctx), (*C.struct_AVFrame)(unsafe.Pointer(frame))))
+}
+
+func AvcodecSendFrame(avctx *Context, frame *avutil.Frame) int {
+	return int(C.avcodec_send_frame((*C.struct_AVCodecContext)(avctx), (*C.struct_AVFrame)(unsafe.Pointer(frame))))
 }
