@@ -98,8 +98,11 @@ func (c *Codec) AvCodecIsDecoder() int {
 }
 
 func (c *Codec) SupportedSamplerates() []int {
-	size := unsafe.Sizeof(*c.supported_samplerates)
 	r := make([]int, 0)
+	if c.supported_samplerates == nil {
+		return r
+	}
+	size := unsafe.Sizeof(*c.supported_samplerates)
 	for i := 0; ; i++ {
 		p := *(*C.int)(unsafe.Pointer(uintptr(unsafe.Pointer(c.supported_samplerates)) + uintptr(i)*size))
 		if p == 0 {
