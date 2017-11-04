@@ -129,6 +129,22 @@ func (c *Codec) SampleFmts() []AvSampleFormat {
 	return r
 }
 
+func (c *Codec) ChannelLayouts() []uint64 {
+	r := make([]uint64, 0)
+	if c.channel_layouts == nil {
+		return r
+	}
+	size := unsafe.Sizeof(*c.channel_layouts)
+	for i := 0; ; i++ {
+		p := *(*C.uint64_t)(unsafe.Pointer(uintptr(unsafe.Pointer(c.channel_layouts)) + uintptr(i)*size))
+		if p == 0 {
+			break
+		}
+		r = append(r, uint64(p))
+	}
+	return r
+}
+
 //Same behaviour av_fast_malloc but the buffer has additional FF_INPUT_BUFFER_PADDING_SIZE at the end which will always be 0.
 func AvFastPaddedMalloc(p unsafe.Pointer, s *uint, t uintptr) {
 	C.av_fast_padded_malloc(p, (*C.uint)(unsafe.Pointer(s)), (C.size_t)(t))

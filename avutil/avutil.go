@@ -9,6 +9,7 @@ package avutil
 
 //#cgo pkg-config: libavutil
 //#include <libavutil/avutil.h>
+//#include <libavutil/channel_layout.h>
 //#include <stdlib.h>
 import "C"
 import (
@@ -91,4 +92,8 @@ func AvFopenUtf8(p, m string) *File {
 //Return the fractional representation of the internal time base.
 func AvGetTimeBaseQ() Rational {
 	return (Rational)(C.av_get_time_base_q())
+}
+
+func AvGetChannelLayoutNbChannels(chanelLayout uint64) int {
+	return int(C.av_get_channel_layout_nb_channels(C.uint64_t(chanelLayout)))
 }
