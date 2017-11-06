@@ -44,6 +44,12 @@ const (
 )
 
 const (
+	AV_CH_FRONT_LEFT    = 0x1
+	AV_CH_FRONT_RIGHT   = 0x2
+	AV_CH_LAYOUT_STEREO = 0x3 //(AV_CH_FRONT_LEFT | AV_CH_FRONT_RIGHT)
+)
+
+const (
 	AVERROR_EAGAIN = -11
 	AVERROR_EOF    = -541478725
 )
