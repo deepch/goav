@@ -116,8 +116,8 @@ func (f *Frame) Width() int {
 }
 
 // SetWidth sets the frame width
-func (f *Frame) SetWidth( w int )  {
-  f.width = int32(w)
+func (f *Frame) SetWidth(w int) {
+	f.width = int32(w)
 }
 
 // Height returns the frame height
@@ -126,20 +126,18 @@ func (f *Frame) Height() int {
 }
 
 // SetHeight setes the frame height
-func (f *Frame) SetHeight( h int )  {
+func (f *Frame) SetHeight(h int) {
 	f.height = int32(h)
 }
 
 // Format returns the frame's format.
-// TODO:  Currently typecast to PixelFormat, but a frame could include audio
-func (f *Frame) Format() PixelFormat {
-	return (PixelFormat)(f.format)
+func (f *Frame) Format() int {
+	return int(f.format)
 }
 
 // SetFormat sets the frame's format.
-// TODO:  Currently typecast to PixelFormat, but a frame could include audio
-func (f *Frame) SetFormat(pixFmt PixelFormat) {
-	f.format = C.enum_AVPixelFormat(pixFmt)
+func (f *Frame) SetFormat(format int) {
+	f.format = int32(format)
 }
 
 // //static int get_video_buffer (Frame *frame, int align)
