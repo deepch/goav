@@ -54,6 +54,11 @@ const (
 	AVERROR_EOF    = -541478725
 )
 
+const (
+	MAX_AVERROR_STR_LEN = 255
+	AVERROR_UNKNOWN     = "Unknown error"
+)
+
 //Return the LIBAvUTIL_VERSION_INT constant.
 func AvutilVersion() uint {
 	return uint(C.avutil_version())
@@ -102,4 +107,18 @@ func AvGetTimeBaseQ() Rational {
 
 func AvGetChannelLayoutNbChannels(chanelLayout uint64) int {
 	return int(C.av_get_channel_layout_nb_channels(C.uint64_t(chanelLayout)))
+}
+
+func AvStrerr(errcode int) string {
+	errbufSize := C.size_t(MAX_AVERROR_STR_LEN)
+	errbuf := (*C.char)(C.malloc(errbufSize))
+	if errbuf == nil {
+		return AVERROR_UNKNOWN
+	}
+	defer C.free(unsafe.Pointer(errbuf))
+	ret := C.av_strerror(C.int(errcode), errbuf, errbufSize)
+	if ret < 0 {
+		return AVERROR_UNKNOWN
+	}
+	return C.GoString(errbuf)
 }
