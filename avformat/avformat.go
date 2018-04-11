@@ -22,7 +22,7 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/koropets/goav/avutil"
+	"github.com/deepch/goav/avutil"
 )
 
 type (
@@ -111,6 +111,7 @@ func AvformatLicense() string {
 //Initialize libavformat and register all the muxers, demuxers and protocols.
 func AvRegisterAll() {
 	C.av_register_all()
+	C.av_log_set_level(C.AV_LOG_FATAL)
 }
 
 //Do global initialization of network components.

@@ -3,13 +3,14 @@ package avcodec
 /*
 #cgo pkg-config: libavcodec
 #include <libavcodec/avcodec.h>
+#include <libavutil/opt.h>
 */
 import "C"
 
 import (
 	"unsafe"
 
-	"github.com/koropets/goav/avutil"
+	"github.com/deepch/goav/avutil"
 )
 
 func (ctxt *Context) ActiveThreadType() int {
@@ -590,6 +591,10 @@ func (ctxt *Context) PixFmt() PixelFormat {
 
 func (ctxt *Context) SetPixFmt(pixFmt PixelFormat) {
 	ctxt.pix_fmt = C.enum_AVPixelFormat(pixFmt)
+}
+func (ctxt *Context) SetEncodeParams(p1 string, p2 string, val int) {
+	C.av_opt_set(ctxt.priv_data, C.CString(p1), C.CString(p2), C.int(val))
+
 }
 
 func (ctxt *Context) RequestSampleFmt() AvSampleFormat {

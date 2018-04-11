@@ -9,8 +9,8 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/koropets/goav/avcodec"
-	"github.com/koropets/goav/avutil"
+	"github.com/deepch/goav/avcodec"
+	"github.com/deepch/goav/avutil"
 )
 
 //Close an opened input Context.

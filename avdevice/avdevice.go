@@ -15,7 +15,7 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/koropets/goav/avutil"
+	"github.com/deepch/goav/avutil"
 )
 
 type (

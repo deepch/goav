@@ -3,13 +3,13 @@ package main
 import (
 	"log"
 
-	"github.com/koropets/goav/avcodec"
-	"github.com/koropets/goav/avdevice"
-	"github.com/koropets/goav/avfilter"
-	"github.com/koropets/goav/avformat"
-	"github.com/koropets/goav/avutil"
-	"github.com/koropets/goav/swresample"
-	"github.com/koropets/goav/swscale"
+	"github.com/deepch/goav/avcodec"
+	"github.com/deepch/goav/avdevice"
+	"github.com/deepch/goav/avfilter"
+	"github.com/deepch/goav/avformat"
+	"github.com/deepch/goav/avutil"
+	"github.com/deepch/goav/swresample"
+	"github.com/deepch/goav/swscale"
 )
 
 func main() {

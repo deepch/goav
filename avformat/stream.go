@@ -9,7 +9,7 @@ import "C"
 import (
 	"unsafe"
 
-	"github.com/koropets/goav/avutil"
+	"github.com/deepch/goav/avutil"
 )
 
 //Rational av_stream_get_r_frame_rate (const Stream *s)
